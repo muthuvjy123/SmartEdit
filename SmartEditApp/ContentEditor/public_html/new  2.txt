@@ -1,0 +1,23 @@
+IdcClientManager myIdcClientManager = new IdcClientManager();
+            IdcClient myIdcClient = myIdcClientManager.createClient(RIDC_URL);
+            String userVal =request.getParameter("userVal").toString(); 
+            String dID =request.getParameter("dID").toString();
+            IdcContext myIdcContext = new IdcContext(userVal);
+            Controller ce= new Controller();
+            ce.RemoveUserData(dID,userVal);
+            /** Checkout start here **/
+            ServiceResponse myServiceResponse = null;
+			DataBinder myResponseDataBinder = null;    
+                      DataBinder myRequestDataBinder = myIdcClient.createBinder();
+                      myRequestDataBinder.putLocal("IdcService", "DOC_INFO");
+                      myRequestDataBinder.putLocal("dID", dID);
+                      myServiceResponse = myIdcClient.sendRequest(myIdcContext, myRequestDataBinder);
+                      myResponseDataBinder = myServiceResponse.getResponseAsBinder();
+                      DataObject myDataObject1 = myResponseDataBinder.getLocalData();
+                      String dDocName = myDataObject1.get("dDocName");  
+                      log.info("dDocName::"+dDocName);
+                      myRequestDataBinder.putLocal("IdcService", "CHECKOUT_BY_NAME");
+                      myRequestDataBinder.putLocal("dID", dID);
+                      myRequestDataBinder.putLocal("dDocName", dDocName);
+                      myServiceResponse = myIdcClient.sendRequest(myIdcContext, myRequestDataBinder);
+                      myResponseDataBinder = myServiceResponse.getResponseAsBinder();

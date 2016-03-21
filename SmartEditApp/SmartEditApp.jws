@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<jws:workspace xmlns:jws="http://xmlns.oracle.com/ide/project">
+   <hash n="adrs-workspace-properties">
+      <value n="adrs-instance-binding" v="DefaultServer"/>
+   </hash>
+   <value n="application-package-prefix" v="org.nmh.nmi.suggestedlink"/>
+   <value n="appTemplateId" v="#genericApplicationTemplate"/>
+   <list n="listOfChildren">
+      <hash><url n="URL" path="ContentEditor/ContentEditor.jpr"/></hash>
+      <hash><url n="URL" path="ImageEditor/ImageEditor.jpr"/></hash>
+      <hash><url n="URL" path="Project1/Project1.jpr"/></hash>
+   </list>
+</jws:workspace>

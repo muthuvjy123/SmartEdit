@@ -1,0 +1,51 @@
+<?xml version = '1.0' encoding = 'windows-1252'?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+         <display-name>ContentEditor</display-name>
+    <filter>
+        <filter-name>JpsFilter</filter-name>
+        <filter-class>oracle.security.jps.ee.http.JpsFilter</filter-class>
+        <init-param>
+            <param-name>enable.anonymous</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>JpsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <servlet>
+		<servlet-name>Log4JInitServlet</servlet-name>
+		<servlet-class>com.onwardpath.Log4JInitServlet</servlet-class>
+		<init-param>
+			<param-name>log4j-properties-location</param-name>
+			<param-value>WEB-INF/log4j.properties</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+   <servlet>
+        <servlet-name>controller</servlet-name>
+        <servlet-class>com.onwardpath.Controller</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>initializecontroller</servlet-name>
+        <servlet-class>com.onwardpath.InitializeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>initializecontroller</servlet-name>
+        <url-pattern>/initializecontroller</url-pattern>
+    </servlet-mapping>
+    <session-config>
+		<session-timeout>1</session-timeout>
+    </session-config>
+    
+         </web-app>
